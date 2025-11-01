@@ -1,0 +1,251 @@
+/* ============================================================
+   The Sacred Cycle - Character Sheet Styles (v0.1.26)
+   Compatible Foundry VTT v13+
+   ============================================================ */
+
+/* Base */
+.tsc.sheet.actor.character { font-family: var(--font-primary); font-size: 13px; }
+.flexrow.gap8{display:flex;gap:8px;align-items:center;}
+.mt8{margin-top:8px;} .mt12{margin-top:12px;}
+.grow{flex:1;}
+label.sep{ margin-left:12px; font-weight:600; }
+
+/* Header */
+.profile-img{
+  width:96px; height:96px; border:2px solid var(--color-border-dark);
+  border-radius:6px; object-fit:cover;
+}
+.header-fields label{ min-width:56px; text-align:right; opacity:.85; font-weight:500; }
+.header-fields input, .header-fields select{ width:100%; font-size:13px; }
+
+/* Panels */
+.tsc .panel{
+  background: rgba(255,255,255,0.7);
+  border:1px solid var(--color-border-light-primary);
+  border-radius:6px; padding:8px;
+  box-shadow:0 1px 3px rgba(0,0,0,.08);
+}
+.tsc .panel h3{
+  margin:-8px -8px 8px -8px; padding:6px 8px;
+  background:#2e3a4a; color:#fff; border-radius:6px 6px 0 0;
+  font-size:12px; letter-spacing:.4px; text-transform:uppercase;
+}
+
+/* Grid 2 colonnes */
+.tsc .tsc-grid{ display:grid; grid-template-columns: 1fr 1.6fr; gap:12px; }
+.left-col, .right-col{ display:flex; flex-direction:column; gap:12px; }
+
+/* ===== VITALITÉ ===== */
+.pv-wrap{ display:flex; justify-content:center; }
+
+.vital-flex{ display:flex; gap:8px; flex-wrap:nowrap; }
+.vital-box{
+  flex:1 1 0; display:flex; align-items:center; justify-content:center; gap:8px;
+  border:1px solid var(--color-border-light-tertiary);
+  border-radius:6px; background:rgba(255,255,255,0.6); padding:6px 8px;
+}
+.vital-box input[type="number"]{ width:70px; text-align:center; }
+.vital-box select{ width:auto; }
+
+/* États + Seuil */
+.vital-line{
+  display:flex; align-items:flex-start; gap:16px;
+  border:1px solid var(--color-border-light-tertiary);
+  border-radius:6px; background:rgba(255,255,255,0.6);
+  padding:8px; flex-wrap:nowrap;
+}
+.two-stacks{ justify-content: space-between; width:100%; }
+.stack{ display:flex; flex-direction:column; gap:6px; min-width:0; flex:1; }
+.stack-title{ font-weight:700; text-transform:uppercase; font-size:12px; text-align:center; }
+
+/* Encadré interne pour les états */
+.inner-card{
+  border:1px solid var(--color-border-light-tertiary);
+  border-radius:6px;
+  background:rgba(255,255,255,0.6);
+  padding:6px 8px;
+}
+.state-options{ display:flex; gap:12px; align-items:center; flex-wrap:nowrap; }
+.state-options label{ white-space:nowrap; }
+
+/* ===== ENTÊTES DE COLONNES (centrées) ===== */
+.grid-header{
+  display:grid; align-items:center;
+  font-weight:700; text-transform:uppercase; font-size:12px;
+  color:#333; opacity:.9; margin-bottom:6px;
+}
+.grid-header.carac{ grid-template-columns: 64px 1fr 0.7fr 0.7fr 0.7fr 48px; }
+.grid-header.combat{ grid-template-columns: 180px 0.7fr 1fr 0.7fr 0.7fr 48px; }
+.grid-header.defenses{ grid-template-columns: 64px 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.9fr; }
+.grid-header.carac > div:not(:first-child),
+.grid-header.combat > div:not(:first-child),
+.grid-header.defenses > div:not(:first-child){ text-align:center; }
+
+/* ===== CARAC ===== */
+.tsc .carac-stack{ display:flex; flex-direction:column; gap:6px; }
+.tsc .carac-line{
+  display:grid; grid-template-columns: 64px 1fr 0.7fr 0.7fr 0.7fr 48px;
+  gap:8px; align-items:center; padding:6px;
+  border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(255,255,255,0.55);
+}
+.tsc .carac-line.center{ width:max-content; margin:0 auto; }
+.tsc .carac-line .abbr{
+  font-weight:700; text-align:center; padding:4px 6px; border-radius:4px;
+  background:#2e3a4a; color:#fff; text-transform:uppercase;
+}
+.tsc .carac-line input[type="number"], .tsc .carac-line select, .tsc .carac-line output{
+  text-align:center; width:100%;
+}
+.tsc .carac-line .roll{
+  width:36px; height:32px; border:1px solid var(--color-border-light-primary);
+  border-radius:6px; cursor:pointer; background:rgba(0,0,0,.04);
+  display:flex; align-items:center; justify-content:center;
+}
+.tsc .carac-line .roll:hover{ background:rgba(0,0,0,.08); }
+
+/* Format ressources (PV/PM/PC) */
+.resource-line{ grid-template-columns: 64px 1fr auto 1fr !important; }
+.resource-line span{ margin:0 4px; }
+
+/* ===== COMBAT ===== */
+.combat-stack{ display:flex; flex-direction:column; gap:6px; }
+.combat-line{
+  display:grid; grid-template-columns: 180px 0.7fr 1fr 0.7fr 0.7fr 48px;
+  gap:8px; align-items:center; padding:6px;
+  border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(255,255,255,0.55);
+}
+.combat-line .abbr{
+  font-weight:700; text-align:center; padding:4px 6px; border-radius:4px;
+  background:#2e3a4a; color:#fff; text-transform:uppercase;
+}
+.combat-line input[type="number"], .combat-line select, .combat-line output{
+  text-align:center; width:100%;
+}
+.combat-line .roll{
+  width:36px; height:32px; border:1px solid var(--color-border-light-primary);
+  border-radius:6px; cursor:pointer; background:rgba(0,0,0,.04);
+  display:flex; align-items:center; justify-content:center;
+}
+.combat-line .roll:hover{ background:rgba(0,0,0,.08); }
+
+/* ===== RESSOURCES (PM / PC sur une seule ligne) ===== */
+.resource-row {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.resource-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.resource-title {
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.resource-line {
+  display: grid;
+  grid-template-columns: 64px 1fr auto 1fr !important;
+  align-items: center;
+  border: 1px solid var(--color-border-light-tertiary);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.6);
+  padding: 4px 6px;
+}
+
+.resource-line .abbr {
+  background: #2e3a4a;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+
+/* ===== DÉFENSES ===== */
+.def-line{
+  display:grid; grid-template-columns: 64px 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.9fr;
+  gap:8px; align-items:center; padding:6px;
+  border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(255,255,255,0.55);
+}
+.def-line .abbr{
+  font-weight:700; text-align:center; padding:4px 6px; border-radius:4px;
+  background:#2e3a4a; color:#fff; text-transform:uppercase;
+}
+.def-line input[type="number"], .def-line output{ text-align:center; width:100%; }
+
+.def-extras{
+  display:flex; gap:8px; margin-top:8px;
+}
+.def-extras .stack{ flex:1; }
+.def-extras .stack-title{
+  font-weight:700; text-transform:uppercase; font-size:12px; text-align:center;
+}
+
+/* ===== ARMES ===== */
+.panel.weapons {
+  margin-top: 16px; /* <-- Ajoute un espace avec le reste */
+}
+
+.panel.weapons .w-row{
+  display:grid;
+  grid-template-columns: 1.6fr 0.9fr 0.8fr 0.7fr 1fr 0.9fr 1.6fr 0.6fr 0.6fr 0.6fr;
+  gap:6px; align-items:center; padding:6px;
+  border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(255,255,255,0.55);
+  margin-bottom:4px;
+}
+.panel.weapons .w-row.head{
+  font-weight:700; text-transform:uppercase; background:rgba(0,0,0,0.05);
+  border-radius:6px;
+}
+.panel.weapons .w-row input[type="number"],
+.panel.weapons .w-row input[type="text"]{ text-align:center; width:100%; }
+.panel.weapons .w-row .roll,
+.panel.weapons .w-row .del{
+  width:36px; height:32px; border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(0,0,0,.04); cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+.panel.weapons .w-row .roll:hover,
+.panel.weapons .w-row .del:hover{ background:rgba(0,0,0,.08); }
+
+/* ===== BADGES TOTALS VERTS ===== */
+.badge-total,
+.combat-line output.total,
+.tsc .carac-line output.total,
+.def-line output.total{
+  background: rgba(46,160,67,0.18);
+  border: 1px solid #3aa35f;
+  color: #1f5a36;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 4px 0;
+  text-align: center;
+}
+
+/* ===== BIO ===== */
+.bio-editor{
+  width:100%; min-height:200px; resize:vertical;
+  border:1px solid var(--color-border-light-primary); border-radius:6px;
+  background:rgba(255,255,255,0.7); padding:8px; font-size:13px; line-height:1.4;
+}
+
+/* Tabs */
+.sheet-tabs{ margin-top:6px; }
+.sheet-tabs .item{
+  padding:4px 8px; border-bottom:2px solid transparent; cursor:pointer;
+  text-transform:uppercase; font-weight:600; font-size:12px;
+}
+.sheet-tabs .item.active{ border-bottom:2px solid #b04040; color:#b04040; }

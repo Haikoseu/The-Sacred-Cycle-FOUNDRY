@@ -1,0 +1,18 @@
+{
+  "id": "the-sacred-cycle",
+  "title": "The Sacred Cycle",
+  "description": "Homebrew system with CO-like sheet. Bilingual FR/EN.",
+  "version": "0.1.32",
+  "compatibility": { "minimum": 13, "verified": 13 },
+  "authors": [{ "name": "You" }],
+  "esmodules": ["module/the-sacred-cycle.mjs", "module/tsc-actor-sheet.mjs"],
+  "styles": ["styles/tsc.css"],
+  "languages": [
+    { "lang": "fr", "name": "Français", "path": "lang/fr.json" },
+    { "lang": "en", "name": "English",  "path": "lang/en.json" }
+  ],
+  "initiative": "1d20",
+  "grid": { "distance": 1, "units": "m" },
+  "primaryTokenAttribute": "system.vitality.hp",
+  "secondaryTokenAttribute": "system.defenses.rd"
+}

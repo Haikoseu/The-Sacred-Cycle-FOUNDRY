@@ -1,0 +1,51 @@
+{
+  "Actor": {
+    "types": ["character"],
+    "templates": {
+      "base": {
+        "details": {
+          "level": "",
+          "class": "",
+          "profile": "",
+          "origin": ""
+        },
+        "attributes": {
+          "str": { "value": 0, "bonus": 0 },
+          "dex": { "value": 0, "bonus": 0 },
+          "con": { "value": 0, "bonus": 0 },
+          "int": { "value": 0, "bonus": 0 },
+          "per": { "value": 0, "bonus": 0 },
+          "cha": { "value": 0, "bonus": 0 }
+        },
+        "combat": {
+          "init":   { "base": 10, "attr": "dex", "bonus": 0 },
+          "melee":  { "base": 0,  "attr": "str", "bonus": 0 },
+          "ranged": { "base": 0,  "attr": "dex", "bonus": 0 },
+          "magic":  { "base": 0,  "attr": "int", "bonus": 0 }
+        },
+        "defenses": {
+          "def":   { "base": 10, "armor": 0, "shield": 0, "dex": 0, "action": 0 },
+          "malus": { "cha": 0 },
+          "dep":   { "value": 10 },
+          "rd":    { "value": 0, "note": "" }
+        },
+        "vitality": {
+          "dv": "d10",
+          "hp": { "value": 10, "max": 10 },
+          "temp": 0,
+          "thresholdSerious": 11
+        },
+        "resources": {
+          "pm": { "value": 10, "max": 10 },
+          "pc": { "value": 3, "max": 3 }
+        },
+        "states": { "condition": "normal" },
+        "weapons": [],
+        "capacites": [],
+        "paths": { "categories": [], "list": [] }
+      }
+    },
+    "character": { "templates": ["base"] }
+  },
+  "Item": { "types": [], "templates": {} }
+}
