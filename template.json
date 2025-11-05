@@ -10,18 +10,18 @@
           "origin": ""
         },
         "attributes": {
-          "str": { "value": 0, "bonus": 0 },
-          "dex": { "value": 0, "bonus": 0 },
-          "con": { "value": 0, "bonus": 0 },
-          "int": { "value": 0, "bonus": 0 },
-          "per": { "value": 0, "bonus": 0 },
-          "cha": { "value": 0, "bonus": 0 }
+          "str": { "value": 0},
+          "dex": { "value": 0},
+          "con": { "value": 0},
+          "int": { "value": 0},
+          "per": { "value": 0},
+          "cha": { "value": 0}
         },
         "combat": {
-          "init":   { "base": 10, "attr": "dex", "bonus": 0 },
-          "melee":  { "base": 0,  "attr": "str", "bonus": 0 },
-          "ranged": { "base": 0,  "attr": "dex", "bonus": 0 },
-          "magic":  { "base": 0,  "attr": "int", "bonus": 0 }
+          "init":   { "base": 10, "attr": "dex"},
+          "melee":  { "base": 0,  "attr": "str"},
+          "ranged": { "base": 0,  "attr": "dex"},
+          "magic":  { "base": 0,  "attr": "int"}
         },
         "defenses": {
           "def":   { "base": 10, "armor": 0, "shield": 0, "dex": 0, "action": 0 },

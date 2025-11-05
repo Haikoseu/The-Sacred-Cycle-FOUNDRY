@@ -91,7 +91,7 @@
             <h3>{{localize "TSC.Panel.Carac"}}</h3>
             <div class="grid-header carac">
               <div></div>
-              <div>{{localize "TSC.Field.Value"}}</div>
+              <div>{{localize "TSC.Field.Base"}}</div>
               <div>{{localize "TSC.Field.Mod"}}</div>
               <div>{{localize "TSC.Field.Total"}}</div>
               <div>{{localize "TSC.Field.Roll"}}</div>
@@ -146,7 +146,7 @@
               <div></div>
               <div>{{localize "TSC.Field.Base"}}</div>
               <div>{{localize "TSC.Field.Attribute"}}</div>
-              <div>{{localize "TSC.Field.Bonus"}}</div>
+              <div>{{localize "TSC.Field.Mod"}}</div>
               <div>{{localize "TSC.Field.Total"}}</div>
               <div>{{localize "TSC.Field.Roll"}}</div>
             </div>
@@ -161,7 +161,7 @@
                   <option value="{{opt.key}}" {{#if (eq opt.key row.attrKey)}}selected{{/if}}>{{opt.abbr}}</option>
                   {{/each}}
                 </select>
-                <input type="number" name="system.combat.{{row.key}}.bonus" value="{{row.bonus}}"/>
+                <output class="mod">{{row.modSigned}}</output>
                 <output class="total">{{row.total}}</output>
                 <button type="button" class="roll" data-action="roll-combat" data-key="{{row.key}}" data-label="{{row.label}}">🎲</button>
               </div>

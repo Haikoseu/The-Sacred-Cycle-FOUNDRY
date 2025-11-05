@@ -17,7 +17,7 @@ export class TSCActorSheet extends foundry.appv1.sheets.ActorSheet {
   getData(options) {
     const ctx = super.getData(options);
     const A = this.actor.system || {};
-    const mod = v => Math.floor((Number(v) || 0));
+    const mod = v => Math.floor(Number(v) || 0);
 
     // ATTRIBUTS — base à 0
     const order = ["str","dex","con","int","per","cha"];
@@ -32,17 +32,15 @@ export class TSCActorSheet extends foundry.appv1.sheets.ActorSheet {
 
     const attrList = order.map(key => {
       const value = Number(A.attributes?.[key]?.value) || 0;
-      const bonus = Number(A.attributes?.[key]?.bonus ?? 0);
       const m = mod(value);
       return {
         key,
         abbr: game.i18n.localize(meta[key].abbrId),
         name: game.i18n.localize(meta[key].nameId),
         value,
-        bonus,
         mod: m,
         modSigned: (m >= 0 ? `+${m}` : `${m}`),
-        total: value + bonus
+        total: value
       };
     });
 
@@ -60,7 +58,6 @@ export class TSCActorSheet extends foundry.appv1.sheets.ActorSheet {
     const combatRows = Object.entries(defaults).map(([key, def]) => {
       const row = combat[key] || {};
       const base    = Number(row.base ?? def.base);
-      const bonus   = Number(row.bonus ?? 0);
       const attrKey = row.attr || def.defaultAttr;
       const attrVal = Number(A.attributes?.[attrKey]?.value) || 0;
       const attrMod = mod(attrVal);
@@ -68,9 +65,10 @@ export class TSCActorSheet extends foundry.appv1.sheets.ActorSheet {
         key,
         label: game.i18n.localize(def.labelId),
         base,
-        bonus,
         attrKey,
-        total: base + bonus + attrMod
+        mod: attrMod,
+        modSigned: (attrMod >= 0 ? `+${attrMod}` : `${attrMod}`),
+        total: base + attrMod
       };
     });
 
