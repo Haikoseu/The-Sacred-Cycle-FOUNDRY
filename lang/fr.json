@@ -71,5 +71,10 @@
   "TSC.Common.Delete": "Suppr.",
 
   "TSC.States.Normal": "Normal",
-  "TSC.States.Weak": "Affaibli"
+  "TSC.States.Weak": "Affaibli",
+
+  "TSC.Cap.PathName": "Voie",
+  "TSC.Cap.PathTitle": "Voie (intitulé)",
+  "TSC.Cap.EntryTitle": "Titre",
+  "TSC.Cap.EntryText": "Description"
 }

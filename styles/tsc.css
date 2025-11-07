@@ -1,5 +1,5 @@
 /* ============================================================
-   The Sacred Cycle - Character Sheet Styles (v0.1.40)
+   The Sacred Cycle - Character Sheet Styles (v0.1.51)
    Compatible Foundry VTT v13+
    ============================================================ */
 
@@ -250,3 +250,59 @@ input[type="number"]{ text-align:center; }
   text-transform:uppercase; font-weight:600; font-size:12px;
 }
 .sheet-tabs .item.active{ border-bottom:2px solid #b04040; color:#b04040; }
+
+/* ===== Capacités (grille) ===== */
+.tsc .capacities-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+/* Panel de voie */
+.tsc .path-panel{ display:flex; flex-direction:column; }
+.tsc .path-panel h3{ padding: 1px 5px 0 5px; }
+.tsc .path-header{ display:flex; align-items:center; }
+
+/* Input qui remplace le titre dans la barre */
+.tsc .panel-title-input{
+  width:100%;
+  border:none; outline:none; background:transparent;
+  color:#fff; font-size:12px; letter-spacing:.4px; text-transform:uppercase;
+}
+.tsc .panel-title-input::placeholder{ color: #aaa; }
+
+/* Corps */
+.tsc .path-body{ display:flex; flex-direction:column; gap:8px; }
+
+/* Badge attribut (INT, FOR, …) */
+.tsc .path-title{
+  width:100%; padding:2px 8px; border-radius:4px;
+  background:transparent; color:#000; font-weight:700; text-transform:uppercase;
+  letter-spacing:.5px; border:1px solid var(--color-border-light-primary);
+}
+
+/* Liste des entrées */
+.tsc .path-entries{ display:flex; flex-direction:column; gap:4px; }
+.tsc details.cap-entry{
+  border-top:1px solid var(--color-border-light-tertiary);
+  padding-top:6px;
+}
+.tsc details.cap-entry > summary{
+  display:flex; align-items:center; gap:6px; cursor:pointer; list-style:none;
+}
+.tsc details.cap-entry > summary::-webkit-details-marker{ display:none; }
+.tsc details.cap-entry > summary .chev{
+  width:10px; height:10px; display:inline-block;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8"><path d="M2 1l4 3-4 3z"/></svg>') no-repeat center / contain;
+  background:#333; opacity:.8; transition: transform .15s ease;
+}
+.tsc details.cap-entry[open] > summary .chev{ transform: rotate(90deg); }
+
+.tsc .entry-title{ flex:1; background: transparent;
+  border:1px solid var(--color-border-light-primary); border-radius:4px;
+}
+.tsc .entry-text{
+  width:100%; margin-top:6px; resize:vertical;
+  border:1px solid var(--color-border-light-primary); border-radius:4px;
+  background: transparent; padding:6px; font-size:13px; line-height:1.35;
+}

@@ -42,7 +42,14 @@
         "states": { "condition": "normal" },
         "weapons": [],
         "capacites": [],
-        "paths": { "categories": [], "list": [] }
+        "paths": [
+          { "path": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] },
+          { "path": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] },
+          { "path": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] },
+          { "path": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] },
+          { "path": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] },
+          { "attr": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] }
+        ]
       }
     },
     "character": { "templates": ["base"] }

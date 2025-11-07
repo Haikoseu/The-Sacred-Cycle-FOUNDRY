@@ -71,5 +71,10 @@
   "TSC.Common.Delete": "Delete",
 
   "TSC.States.Normal": "Normal",
-  "TSC.States.Weak": "Weakened"
+  "TSC.States.Weak": "Weakened",
+
+  "TSC.Cap.PathName": "Path",
+  "TSC.Cap.PathTitle": "Path title",
+  "TSC.Cap.EntryTitle": "Title",
+  "TSC.Cap.EntryText": "Description"
 }

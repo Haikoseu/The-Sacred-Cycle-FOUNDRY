@@ -78,6 +78,26 @@ export class TSCActorSheet extends foundry.appv1.sheets.ActorSheet {
       (Number(D.base)||0) + (Number(D.armor)||0) + (Number(D.shield)||0) +
       (Number(D.dex)||0)  + (Number(D.action)||0);
 
+    // ===== Capacités / Voies (3 colonnes x 2 lignes)
+    const defaultEntry = () => ({ title: "", text: "", open: false });
+    const defaultPath  = () => ({
+      attr: "",           // abréviation, ex. INT
+      title: "",          // titre de la voie (ex. Voie culturelle)
+      entries: [defaultEntry(), defaultEntry(), defaultEntry(), defaultEntry(), defaultEntry()]
+    });
+
+    const paths = foundry.utils.duplicate(A.paths ?? {});
+    if (!Array.isArray(paths)) paths = [];
+    while (paths.length < 6) paths.push(defaultPath());
+
+    // Norme: s’assurer que chaque voie a 5 entrées
+    for (const v of paths) {
+      if (!Array.isArray(v.entries)) v.entries = [];
+      while (v.entries.length < 5) v.entries.push(defaultEntry());
+    }
+
+    ctx.paths = paths;
+
     // CONTEXTE
     ctx.system      = A;
     ctx.details     = A.details || {};

@@ -225,5 +225,45 @@
         {{/each}}
       </section>
     </div>
+    
+    {{!-- ===== ONGLET CAPACITÉS ===== --}}
+    <div class="tab" data-tab="capacites">
+      <div class="capacities-grid">
+        {{#each paths as |v i|}}
+        <section class="panel path-panel">
+          <h3 class="path-header">
+            <input class="panel-title-input"
+                  type="text"
+                  name="system.paths.{{i}}.title"
+                  value="{{v.title}}"
+                  placeholder="{{localize 'TSC.Cap.PathTitle'}}"/>
+          </h3>
+          <div class="path-body">
+            <input class="path-title" type="text"
+                  name="system.paths.{{i}}.path"
+                  value="{{v.attr}}"
+                  placeholder="{{localize 'TSC.Cap.PathName'}}"/>
+            <div class="path-entries">
+              {{#each v.entries as |e j|}}
+              <details class="cap-entry" {{#if e.open}}open{{/if}}>
+                <summary>
+                  <span class="chev"></span>
+                  <input class="entry-title" type="text"
+                        name="system.paths.{{@../index}}.entries.{{j}}.title"
+                        value="{{e.title}}"
+                        placeholder="{{localize 'TSC.Cap.EntryTitle'}}"/>
+                </summary>
+                <textarea class="entry-text"
+                          name="system.paths.{{@../index}}.entries.{{j}}.text"
+                          rows="4"
+                          placeholder="{{localize 'TSC.Cap.EntryText'}}">{{e.text}}</textarea>
+              </details>
+              {{/each}}
+            </div>
+          </div>
+        </section>
+        {{/each}}
+      </div>
+    </div>
   </section>
 </form>
