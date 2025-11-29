@@ -1,18 +1,23 @@
 {
-  "TSC.System.Title": "The Sacred Cycle",
+  "TSC.HP": "PV",
+  "TSC.MP": "PM",
+  "TSC.LP": "PC",
+
+  "TSC.System.Title": "Le Cycle Sacré",
   "TSC.Actor.Character": "Personnage",
 
   "TSC.Tabs.Attributes": "Caractéristiques",
   "TSC.Tabs.Capacities": "Capacités",
   "TSC.Tabs.Inventory": "Inventaire",
   "TSC.Tabs.Bio": "Bio & Info",
-  "TSC.Tabs.Version": "Version",
+  "TSC.Tabs.Version": "Configuration",
 
   "TSC.Panel.Vitalite": "Vitalité",
   "TSC.Panel.Carac": "Caractéristiques",
   "TSC.Panel.Combat": "Combat",
   "TSC.Panel.Ressources": "Ressources",
   "TSC.Panel.Etats": "États",
+  "TSC.Panel.Injuries": "Blessures",
 
   "TSC.Attr.FOR": "Force",
   "TSC.Attr.DEX": "Dextérité",
@@ -33,13 +38,12 @@
   "TSC.Combat.Ranged": "À distance",
   "TSC.Combat.Magic": "Magie",
 
-  "TSC.Section.Combat": "Combat",
   "TSC.Section.Defenses": "Défenses",
 
   "TSC.Field.Value": "Valeur",
   "TSC.Field.Base": "Base",
   "TSC.Field.Bonus": "Bonus",
-  "TSC.Field.Mod": "Mod",
+  "TSC.Field.Mod": "Mod.",
   "TSC.Field.Total": "Total",
   "TSC.Field.Attribute": "Attribut",
   "TSC.Field.Roll": "Jet",
@@ -51,16 +55,15 @@
   "TSC.Field.SeriousThreshold": "Seuil blessure grave",
 
   "TSC.Def.DEF": "DEF",
+  "TSC.Def.DEM": "DEM",
   "TSC.Def.Armor": "Armure",
   "TSC.Def.Shield": "Bouclier",
-  "TSC.Def.Action": "Action",
   "TSC.Def.MalusCHA": "Malus (CHA)",
   "TSC.Def.DEP": "DEP",
   "TSC.Def.RD": "RD",
   "TSC.Def.DmgRed": "Réduction des DM",
 
   "TSC.Weapons.Title": "Armes / Attaques",
-  "TSC.Weapons.Name": "Nom",
   "TSC.Weapons.Type": "Type",
   "TSC.Weapons.Attack": "Attaque +",
   "TSC.Weapons.Crit": "Crit.",
@@ -68,7 +71,10 @@
   "TSC.Weapons.Range": "Portée",
   "TSC.Weapons.Special": "Spécial",
   "TSC.Weapons.Roll": "Jet",
+
   "TSC.Common.Delete": "Suppr.",
+  "TSC.Common.Name": "Nom",
+  "TSC.Common.Add": "+ Ajouter",
 
   "TSC.States.Normal": "Normal",
   "TSC.States.Weak": "Affaibli",
@@ -76,5 +82,67 @@
   "TSC.Cap.PathName": "Voie",
   "TSC.Cap.PathTitle": "Voie (intitulé)",
   "TSC.Cap.EntryTitle": "Titre",
-  "TSC.Cap.EntryText": "Description"
+  "TSC.Cap.EntryText": "Description",
+
+  "TSC.Tools.Title": "Outils de capacités",
+  "TSC.Tools.Tabs.Rolls": "Jets",
+  "TSC.Tools.Tabs.Traits": "Maitrises - Relations",
+  "TSC.Tools.Tabs.Mods": "Modificateurs",
+
+  "TSC.Rolls.Mode.Normal": "Normal",
+  "TSC.Rolls.Mode.Best": "Garder le meilleur",
+  "TSC.Rolls.Mode.Worst": "Garder le pire",
+  "TSC.Rolls.Add": "Ajouter un jet",
+
+  "TSC.Traits.Knowledge": "Connaissances",
+  "TSC.Traits.Languages": "Langues",
+  "TSC.Traits.Relations": "Relations",
+  "TSC.Traits.Notes": "Notes",
+
+  "TSC.Mods.Target": "Cible",
+  "TSC.Mods.Value": "Valeur",
+  "TSC.Mods.Note": "Note",
+  "TSC.Mods.Add": "Ajouter un mod.",
+
+  "TSC.Inv.Title": "Équipement",
+  "TSC.Inv.Credits": "Crédits",
+  "TSC.Inv.EncTotal": "Enc. Total",
+  "TSC.Inv.Enc": "Enc.",
+  "TSC.Inv.Qty": "Nbre",
+  "TSC.Inv.Misc": "DIVERS",
+  "TSC.Inv.Notes": "Notes",
+
+  "TSC.OtherRes.Title": "Autres Ressources",
+  "TSC.OtherRes.Lifestyle": "Niveau de vie",
+  "TSC.OtherRes.Value": "Valeur",
+
+  "TSC.Lifestyle.Poor": "Précaire",
+  "TSC.Lifestyle.Standard": "Standard",
+  "TSC.Lifestyle.Comfort": "Aisé",
+  "TSC.Lifestyle.Luxury": "Luxueux",
+
+  "TSC.Info.Panel": "Informations",
+  "TSC.Info.Photo": "Illustration",
+  "TSC.Info.Age": "Âge",
+  "TSC.Info.Gender": "Genre",
+  "TSC.Info.Origin": "Origine",
+  "TSC.Info.Profile": "Profil",
+  "TSC.Info.Religion": "Religion",
+  "TSC.Info.Eyes": "Yeux",
+  "TSC.Info.Skin": "Peau",
+  "TSC.Info.Hair": "Cheveux",
+  "TSC.Info.Weight": "Poids",
+  "TSC.Info.Height": "Taille",
+  "TSC.Header.Level": "Niveau",
+
+  "TSC.Config.System": "Système",
+  "TSC.Config.Version": "Version",
+  "TSC.Config.Prefs": "Paramètres",
+  "TSC.Config.Theme.Label": "Thème",
+  "TSC.Config.Theme.Light": "Clair",
+  "TSC.Config.Theme.Dark": "Sombre",
+  "TSC.Config.Injury.Mode.Label": "Mode de malus",
+  "TSC.Config.Injury.Mode.Flat": "Malus au résultat",
+  "TSC.Config.Injury.Mode.Dice": "Malus au dé",
+  "TSC.Config.Injury.Value": "Valeur du malus"
 }

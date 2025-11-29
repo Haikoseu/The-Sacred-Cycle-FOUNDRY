@@ -2,9 +2,9 @@
   "id": "the-sacred-cycle",
   "title": "The Sacred Cycle",
   "description": "Homebrew system with CO-like sheet. Bilingual FR/EN.",
-  "version": "0.1.51",
+  "version": "0.1.246",
   "compatibility": { "minimum": 13, "verified": 13 },
-  "authors": [{ "name": "You" }],
+  "authors": [{ "name": "Heikos" }],
   "esmodules": ["module/the-sacred-cycle.mjs", "module/tsc-actor-sheet.mjs"],
   "styles": ["styles/tsc.css"],
   "languages": [

@@ -1,23 +1,22 @@
-/* ============================================================
-   The Sacred Cycle - Character Sheet Styles (v0.1.51)
-   Compatible Foundry VTT v13+
-   ============================================================ */
+/* -------- Variables locales (tailles/couleurs de contrôles) -------- */
+.tsc{
+  --tsc-ctrl-w: 26px;
+  --tsc-ctrl-h: 26px;
+  --tsc-ctrl-bg: rgba(0,0,0,.04);
+  --tsc-ctrl-bg-hover: rgba(0,0,0,.08);
+  --tsc-border: var(--color-border-light-primary);
+  --tsc-green-bg: rgba(46,160,67,0.18);
+  --tsc-green-border: #3aa35f;
+  --tsc-green-fg: #1f5a36;
+}
 
 /* Base */
 .tsc.sheet.actor.character { font-family: var(--font-primary); font-size: 13px; }
 .flexrow.gap8{display:flex;gap:8px;align-items:center;}
-.mt8{margin-top:8px;} .mt12{margin-top:12px;}
+.mt8{margin-top:6px;} .mt12{margin-top:12px;}
 .grow{flex:1;}
 label.sep{ margin-left:12px; font-weight:600; }
 input[type="number"]{ text-align:center; }
-
-/* Header */
-.profile-img{
-  width:96px; height:96px; border:2px solid var(--color-border-dark);
-  border-radius:6px; object-fit:cover;
-}
-.header-fields label{ min-width:56px; text-align:right; opacity:.85; font-weight:500; }
-.header-fields input, .header-fields select{ width:100%; font-size:13px; }
 
 /* Panels */
 .tsc .panel{
@@ -33,8 +32,8 @@ input[type="number"]{ text-align:center; }
 }
 
 /* Grid 2 colonnes */
-.tsc .tsc-grid{ display:grid; grid-template-columns: 380px 1.6fr; gap:12px; }
-.left-col, .right-col{ display:flex; flex-direction:column; gap:12px; }
+.tsc .tsc-grid{ display:grid; grid-template-columns: 380px 1.6fr; gap:10px; }
+.left-col, .right-col{ display:flex; flex-direction:column; gap:10px; }
 
 /* ===== VITALITÉ ===== */
 .pv-wrap{ display:flex; justify-content:center; }
@@ -43,7 +42,7 @@ input[type="number"]{ text-align:center; }
 .vital-box{
   flex:1 1 0; display:flex; align-items:center; justify-content:center; gap:8px;
   border:1px solid var(--color-border-light-primary);
-  border-radius:6px; background:rgba(255,255,255,0.6); padding:6px 8px;
+  border-radius:6px; background:rgba(255,255,255,0.6); padding:4px 8px;
 }
 .vital-box input[type="number"]{ width:70px; }
 .vital-box select{ width:auto; }
@@ -60,13 +59,7 @@ input[type="number"]{ text-align:center; }
 .stack-title{ font-weight:700; text-transform:uppercase; font-size:12px; text-align:center; }
 
 /* Encadré interne pour les états */
-.inner-card{
-  border:1px solid var(--color-border-light-primary);
-  border-radius:6px;
-  background:rgba(255,255,255,0.6);
-  padding:6px 8px;
-}
-.state-options{ display:flex; gap:12px; align-items:center; flex-wrap:nowrap; }
+.state-options{ display:flex; gap:10px; align-items:center; flex-wrap:nowrap; margin-left: 2px; }
 .state-options label{ white-space:nowrap; }
 
 /* ===== ENTÊTES DE COLONNES (centrées) ===== */
@@ -85,7 +78,7 @@ input[type="number"]{ text-align:center; }
 /* ===== CARAC ===== */
 .tsc .carac-stack{ display:flex; flex-direction:column; gap:6px; }
 .tsc .carac-line{
-  display:grid; grid-template-columns: 64px 1fr 0.7fr 0.7fr 48px;
+  display:grid; grid-template-columns: 64px 1fr 0.7fr 0.7fr 38px;
   gap:8px; align-items:center; padding:6px;
   border:1px solid var(--color-border-light-primary);
   border-radius:6px; background:rgba(255,255,255,0.55);
@@ -100,42 +93,15 @@ input[type="number"]{ text-align:center; }
 }
 .tsc .carac-line .roll{
   width:36px; height:32px; border:1px solid var(--color-border-light-primary);
-  border-radius:6px; cursor:pointer; background:rgba(0,0,0,.04);
+  border-radius:6px; cursor:pointer; background:#dbdde6;
   display:flex; align-items:center; justify-content:center;
 }
-.tsc .carac-line .roll:hover{ background:rgba(0,0,0,.08); }
-
-/* Format ressources (PV/PM/PC) */
-.resource-line{ grid-template-columns: 64px 1fr auto 1fr !important; }
-.resource-line span{ margin:0 4px; }
-
-/* ===== COMBAT ===== */
-.combat-stack{ display:flex; flex-direction:column; gap:6px; }
-.combat-line{
-  display:grid; grid-template-columns: 180px 0.7fr 1fr 0.7fr 0.7fr 48px;
-  gap:8px; align-items:center; padding:6px;
-  border:1px solid var(--color-border-light-primary);
-  border-radius:6px; background:rgba(255,255,255,0.55);
-}
-.combat-line .abbr{
-  font-weight:700; text-align:center; padding:4px 6px; border-radius:4px;
-  background:#2e3a4a; color:#fff; text-transform:uppercase;
-}
-.combat-line input[type="number"], .combat-line select, .combat-line output{
-  text-align:center; width:100%;
-}
-.combat-line .roll{
-  width:36px; height:32px; border:1px solid var(--color-border-light-primary);
-  border-radius:6px; cursor:pointer; background:rgba(0,0,0,.04);
-  display:flex; align-items:center; justify-content:center;
-}
-.combat-line .roll:hover{ background:rgba(0,0,0,.08); }
 
 /* ===== RESSOURCES (PM / PC sur une seule ligne) ===== */
 .resource-row {
   display: flex;
   flex-direction: row;
-  gap: 12px;
+  gap: 8px;
   align-items: flex-start;
   justify-content: space-between;
 }
@@ -163,7 +129,6 @@ input[type="number"]{ text-align:center; }
   background: rgba(255,255,255,0.6);
   padding: 4px 6px;
 }
-
 .resource-line .abbr {
   background: #2e3a4a;
   color: #fff;
@@ -171,6 +136,28 @@ input[type="number"]{ text-align:center; }
   text-align: center;
   border-radius: 4px;
   padding: 4px 6px;
+}
+.resource-line span{ margin:0 4px; }
+
+/* ===== COMBAT ===== */
+.combat-stack{ display:flex; flex-direction:column; gap:6px; }
+.combat-line{
+  display:grid; grid-template-columns: 180px 0.7fr 1fr 0.7fr 0.7fr 38px;
+  gap:8px; align-items:center; padding:6px;
+  border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(255,255,255,0.55);
+}
+.combat-line .abbr{
+  font-weight:700; text-align:center; padding:4px 6px; border-radius:4px;
+  background:#2e3a4a; color:#fff; text-transform:uppercase;
+}
+.combat-line input[type="number"], .combat-line select, .combat-line output{
+  text-align:center; width:100%;
+}
+.combat-line .roll{
+  width:36px; height:32px; border:1px solid var(--color-border-light-primary);
+  border-radius:6px; cursor:pointer; background:#dbdde6;
+  display:flex; align-items:center; justify-content:center;
 }
 
 /* ===== DÉFENSES ===== */
@@ -184,7 +171,7 @@ input[type="number"]{ text-align:center; }
   font-weight:700; text-align:center; padding:4px 6px; border-radius:4px;
   background:#2e3a4a; color:#fff; text-transform:uppercase;
 }
-.def-line input[type="number"], .def-line output{ width:100%; }
+.def-line input[type="number"], .def-line output{ width:100%; text-align: center; }
 
 .def-extras{
   display:flex; gap:8px; margin-top:8px;
@@ -195,10 +182,7 @@ input[type="number"]{ text-align:center; }
 }
 
 /* ===== ARMES ===== */
-.panel.weapons {
-  margin-top: 16px; /* <-- Ajoute un espace avec le reste */
-}
-
+.panel.weapons { margin-top: 10px; }
 .panel.weapons .w-row{
   display:grid;
   grid-template-columns: 1.6fr 0.9fr 0.8fr 0.7fr 1fr 0.9fr 1.6fr 0.6fr 0.6fr 0.6fr;
@@ -222,6 +206,18 @@ input[type="number"]{ text-align:center; }
 .panel.weapons .w-row .roll:hover,
 .panel.weapons .w-row .del:hover{ background:rgba(0,0,0,.08); }
 
+/* Bouton “Ajouter” sous la liste d'armes */
+.panel.weapons .weap-actions{
+  display:flex; justify-content:flex-end; margin-top:6px;
+}
+.panel.weapons .weap-actions .add{
+  padding:0 10px; border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(0,0,0,.04); cursor:pointer;
+}
+.panel.weapons .weap-actions .add:hover{
+  background:rgba(0,0,0,.08);
+}
+
 /* ===== BADGES TOTALS VERTS ===== */
 .badge-total,
 .combat-line output.total,
@@ -244,65 +240,590 @@ input[type="number"]{ text-align:center; }
 }
 
 /* Tabs */
-.sheet-tabs{ margin-top:6px; }
+.sheet-tabs{
+  margin:6px 0 8px 0; 
+  border-radius: 6px;
+  background: #ffffff16;
+  border: none;
+  padding: 3px 0 0 0;
+}
 .sheet-tabs .item{
   padding:4px 8px; border-bottom:2px solid transparent; cursor:pointer;
-  text-transform:uppercase; font-weight:600; font-size:12px;
+  text-transform:uppercase; font-weight:600; font-size:12px; color: #ccc
 }
-.sheet-tabs .item.active{ border-bottom:2px solid #b04040; color:#b04040; }
+.sheet-tabs .item.active{ border-bottom:2px solid #FF5050; color:#FF5050; }
 
-/* ===== Capacités (grille) ===== */
+/* ===== Capacités (grille + panneaux) ===== */
 .tsc .capacities-grid{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:12px;
+  display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;
 }
-
-/* Panel de voie */
 .tsc .path-panel{ display:flex; flex-direction:column; }
-.tsc .path-panel h3{ padding: 1px 5px 0 5px; }
+.tsc .path-panel h3{ padding: 5px 7px 5px 6px; }
 .tsc .path-header{ display:flex; align-items:center; }
 
 /* Input qui remplace le titre dans la barre */
 .tsc .panel-title-input{
-  width:100%;
-  border:none; outline:none; background:transparent;
+  width:100%; border:none; outline:none; background:transparent;
   color:#fff; font-size:12px; letter-spacing:.4px; text-transform:uppercase;
 }
-.tsc .panel-title-input::placeholder{ color: #aaa; }
+.tsc .panel-title-input::placeholder{ color: rgba(255,255,255,0.5); opacity:1; }
 
-/* Corps */
+/* Corps + badge abrégé */
 .tsc .path-body{ display:flex; flex-direction:column; gap:8px; }
-
-/* Badge attribut (INT, FOR, …) */
 .tsc .path-title{
   width:100%; padding:2px 8px; border-radius:4px;
-  background:transparent; color:#000; font-weight:700; text-transform:uppercase;
-  letter-spacing:.5px; border:1px solid var(--color-border-light-primary);
+  background:white; box-shadow: none; color:#000; border:1px solid var(--tsc-border);
+  letter-spacing:.5px; font-weight:700; text-transform:uppercase;
 }
 
 /* Liste des entrées */
 .tsc .path-entries{ display:flex; flex-direction:column; gap:4px; }
 .tsc details.cap-entry{
   border-top:1px solid var(--color-border-light-tertiary);
-  padding-top:6px;
+  padding-top:4px;
 }
+
+/* Résumé d’une entrée (unique) */
 .tsc details.cap-entry > summary{
-  display:flex; align-items:center; gap:6px; cursor:pointer; list-style:none;
+  display:flex; align-items:center; gap:8px; cursor:pointer; list-style:none;
+  min-height: var(--tsc-ctrl-h);
 }
 .tsc details.cap-entry > summary::-webkit-details-marker{ display:none; }
+
+/* Chevron (14px) */
 .tsc details.cap-entry > summary .chev{
-  width:10px; height:10px; display:inline-block;
+  width:14px; height:14px;
   mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8"><path d="M2 1l4 3-4 3z"/></svg>') no-repeat center / contain;
-  background:#333; opacity:.8; transition: transform .15s ease;
+  background:#333; opacity:.85; transition: transform .15s ease;
 }
 .tsc details.cap-entry[open] > summary .chev{ transform: rotate(90deg); }
 
-.tsc .entry-title{ flex:1; background: transparent;
-  border:1px solid var(--color-border-light-primary); border-radius:4px;
+/* Titre & Description d’entrée */
+.tsc .entry-title{
+  flex:1; background: white; box-shadow: none;
+  border:1px solid var(--tsc-border); border-radius:4px;
 }
 .tsc .entry-text{
   width:100%; margin-top:6px; resize:vertical;
-  border:1px solid var(--color-border-light-primary); border-radius:4px;
-  background: transparent; padding:6px; font-size:13px; line-height:1.35;
+  border:1px solid var(--tsc-border); border-radius:4px;
+  background: white; box-shadow: none; box-shadow: none;
+  padding:6px; font-size:13px; line-height:1.35;
+}
+
+/* Petits contrôles – styles communs */
+.tsc .entry-chat,
+.tsc .entry-toggle{
+  width: var(--tsc-ctrl-w); height: var(--tsc-ctrl-h);
+  border:1px solid var(--tsc-border);
+  border-radius:6px; background: #ffffff77;
+  display:inline-flex; align-items:center; justify-content:center;
+  cursor:pointer; line-height:1; font-size:14px;
+}
+.tsc .entry-chat:hover,
+.tsc .entry-toggle:hover{ background: var(--tsc-ctrl-bg-hover); }
+
+/* Positionnement du bouton chat */
+.tsc .entry-chat{ margin-left:auto; }
+
+/* Checkbox bouton : input caché + label stylé */
+.tsc .entry-active{ display:none; }
+.tsc .entry-active:checked + .entry-toggle{
+  background: var(--tsc-green-bg); border-color: var(--tsc-green-border);
+}
+.tsc .entry-active:checked + .entry-toggle::after{
+  content:"✓"; font-weight:700; font-size:14px;
+}
+
+/* Évite que cliquer sur les contrôles replie l’entrée */
+.tsc .entry-toggle, .tsc .entry-chat, .tsc .entry-title{ pointer-events:auto; }
+
+/* ===== Sous-onglets "Outils de capacités" ===== */
+.tsc .cap-tools { margin-top: 10px; }
+.tsc .cap-tools .subtabs{
+  margin: 6px -6px 8px -6px; padding: 0 6px 6px 6px;
+  border-bottom: 1px solid var(--color-border-light-primary);
+}
+.tsc .cap-tools .subtabs .item{
+  padding:4px 8px; margin-right:6px;
+  border-bottom:2px solid transparent;
+  cursor:pointer;
+  text-transform:uppercase;
+  font-weight:600; font-size:12px;
+}
+.tsc .cap-tools .subtabs .item.active{
+  border-bottom:2px solid #FF5050;
+  color:#FF5050;
+  text-shadow: 0 0 10px var(--color-shadow-primary);
+}
+.tsc .cap-tools .subbody .subtab{ display:none; }
+.tsc .cap-tools .subbody .subtab.active{ display:block; }
+
+/* petite grille 3 colonnes pour traits */
+.tsc .cap-tools .traits-grid{
+  display:grid; grid-template-columns: repeat(2, 1fr); gap:8px;
+}
+
+/* ===== Lignes "Jet de capacités" et "Modificateurs" ===== */
+.tsc .cap-tools .w-row {
+  display: grid;
+  grid-template-columns: 1.3fr 1.2fr 0.8fr 0.6fr 0.5fr 1fr 0.7fr 0.5fr 0.5fr;
+  gap: 6px;
+  align-items: center;
+  padding: 6px; margin-bottom: 4px;
+  border: 1px solid var(--tsc-border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.55);
+}
+.tsc .cap-tools .w-row.head {
+  font-weight: 700;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+}
+.tsc .cap-tools .w-row input,
+.tsc .cap-tools .w-row select {
+  text-align: center;
+  width: 100%;
+}
+.tsc .cap-tools .w-row .btn-ctrl {
+  width: var(--tsc-ctrl-w);
+  height: var(--tsc-ctrl-h);
+  border: 1px solid var(--tsc-border);
+  border-radius: 6px;
+  background: var(--tsc-ctrl-bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tsc .cap-tools .w-row .btn-ctrl:hover {
+  background: var(--tsc-ctrl-bg-hover);
+}
+/* Ligne de jet compacte */
+.tsc .roll-line{
+  display:flex; flex-direction:column; gap:4px;
+  border:1px solid var(--tsc-border); border-radius:6px;
+  background:rgba(255,255,255,0.55); padding:6px; margin-bottom:6px;
+}
+.tsc .roll-formula{ display:flex; align-items:center; gap:4px; font-size:13px; height:30px; margin-top: 1px; }
+.tsc .roll-formula select, .tsc .roll-formula input.bonus{
+  width:auto; height:24px; font-size:13px; text-align:center;
+}
+.tsc .roll-formula .btn-ctrl{
+  width: var(--tsc-ctrl-w); height: var(--tsc-ctrl-h);
+  border:1px solid var(--tsc-border); border-radius:6px;
+  background:var(--tsc-ctrl-bg); display:flex; align-items:center; justify-content:center; cursor:pointer;
+}
+.tsc .roll-formula .btn-ctrl:hover{ background:var(--tsc-ctrl-bg-hover); }
+.tsc .roll-line textarea{
+  width:100%; border:1px solid var(--tsc-border); border-radius:4px; background:white;
+  padding:4px 6px; font-size:13px;
+}
+.tsc .roll-line textarea {
+  height: 2em;     /* 1 ligne visible */
+  resize: vertical;  /* étirable */
+  min-height: 2em;
+  margin-top: 2px;
+}
+.tsc .roll-formula span{
+  white-space: nowrap;
+}
+/* --- Onglets internes (cap-tools) --- */
+.tsc .cap-tools .subtabs {
+  border-bottom: 1px solid var(--color-border-light-primary);
+  margin-bottom: 6px;
+  order: -1; /* place la barre d'onglets au-dessus */
+}
+.tsc .cap-tools .subtabs .item {
+  padding: 4px 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  border-bottom: none;
+}
+
+/* ===== Cap Tools — ligne Mods : titre qui s’étire à gauche ===== */
+.tsc .cap-tools .subtab[data-tab="mods"] .w-row {
+  grid-template-columns: 1fr 180px 100px 32px; /* Titre | Cible | Valeur | Suppr */
+}
+.tsc .cap-tools .subtab[data-tab="mods"] .w-row .name {
+  text-align: left;
+}
+.tsc .cap-tools .subtab[data-tab="mods"] .w-row .value {
+  text-align: center;
+}
+
+/* ===== INVENTAIRE ===== */
+.tsc .inv-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "equip others"
+    "misc  notes";
+  gap:10px;
+}
+
+/* Panneaux */
+.tsc .inv-equip{ grid-area:equip; }
+.tsc .inv-others{ grid-area:others; }
+.tsc .inv-misc{ grid-area:misc; }
+.tsc .inv-notes{ grid-area:notes; }
+
+/* Inventaire : barres hautes */
+.tsc .inv-bar{
+  display:flex; justify-content:space-between; align-items:center;
+  border:1px solid var(--color-border-light-primary);
+  border-radius:4px; background:rgba(255,255,255,.55);
+  padding:4px 6px; margin-bottom:6px;
+}
+.tsc .inv-credits input{ width:90px; text-align:center; }
+
+/* En-têtes + lignes — ÉQUIPEMENT (Sans colonne Enc.) */
+.tsc .inv-head,
+.tsc .inv-row{
+  display:grid;
+  grid-template-columns: 1fr 64px 36px; /* name | qty | tools */
+  gap:4px; align-items:center;
+}
+.tsc .inv-head{
+  margin:2px 0 4px 0;
+  font-weight:700; text-transform:uppercase; font-size:12px;
+  color:#333; opacity:.9;
+}
+.tsc .inv-row{
+  padding:6px; margin-bottom:4px;
+  border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(255,255,255,.55);
+}
+.tsc .inv-row .name{ width:100%; }
+.tsc .inv-row .qty{ text-align:center; }
+
+/* En-têtes + lignes — AUTRES RESSOURCES (name | value | tools) */
+.tsc .other-head,
+.tsc .other-row{
+  display:grid;
+  grid-template-columns: 1fr 80px 36px;
+  gap:4px; align-items:center;
+}
+.tsc .other-head{
+  margin:2px 0 4px 0;
+  font-weight:700; text-transform:uppercase; font-size:12px;
+  color:#333; opacity:.9;
+}
+.tsc .other-row{
+  padding:6px; margin-bottom:4px;
+  border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(255,255,255,.55);
+}
+.tsc .other-row .value{ text-align:center; }
+
+/* Boutons */
+.tsc .row-tools{ display:flex; gap:4px; justify-content:center; }
+.tsc .row-tools .mini{
+  width:26px; height:26px; padding:0;
+  border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(0,0,0,.04); cursor:pointer;
+}
+.tsc .row-tools .mini:hover{ background:rgba(0,0,0,.08); }
+
+/* Barre d'actions : bouton Ajouter à droite, largeur 25% */
+.tsc .inv-actions{ margin-top:6px; }
+.tsc .inv-actions.right{ display:flex; justify-content:flex-end; }
+.tsc .inv-actions .add{
+  width:25%; min-width:160px;
+  border:1px solid var(--color-border-light-primary); border-radius:6px; cursor:pointer;
+  height:26px; padding:0 8px;
+}
+.tsc .inv-actions .add:hover{ background:rgba(0,0,0,.08); }
+
+.inv-head .name,
+.other-head .name { text-align:left; }
+.inv-head .qty,
+.other-head .value { text-align:left; }
+
+/* Zones texte bas */
+.tsc .inv-misc textarea,
+.tsc .inv-notes textarea{
+  width:100%; min-height:140px; resize:vertical;
+  border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(255,255,255,.7);
+  padding:6px; font-size:13px; line-height:1.35;
+}
+
+/* Riche éditeur dans le panel Bio */
+.tsc .editor,
+.tsc .editor-content {
+  min-height: 220px;
+}
+
+/* optionnel */
+.tsc .panel .editor.prosemirror {
+  min-height: 350px;
+}
+
+.result {
+  background:#eeeeee;
+  border: 1px solid var(--color-border-light-tertiary);
+  border-radius: 6px;
+  padding: 4px 8px;
+  text-align: center;
+}
+.injury-checkbox { height: 16px; padding: 0; margin: 0; }
+.def-stack { gap: 6px; display: flex; flex-direction: column; }
+
+/* ====== HEADER / BANNIÈRE (compact) ====== */
+.tsc-header{
+  display:grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items:center;
+  gap: 8px;
+}
+
+.tsc-header .system-badge{
+  width: 72px;           /* ajuste si besoin : 56–96px */
+  height: 72px;
+  object-fit: contain;
+  justify-self: end;
+  border: none;
+}
+
+.tsc-header .profile-img{
+  width:80px; height:80px; object-fit:cover;
+  border:none; justify-self:start;
+}
+
+.tsc-header .header-identity{
+  display:flex; flex-direction:column; gap:6px;
+  align-self:center;
+}
+
+.tsc-header .name-big{
+  font-size:32px; font-weight:800; letter-spacing:.3px;
+  border:none; padding:0; margin:0;
+  outline:none; width:100%; height:36px;
+  box-shadow: none; color: white;
+}
+
+.tsc-header .level-row{
+  display: flex; align-items: center; opacity: .95;
+  border-radius: 6px; border: 1px solid var(--color-border-light-primary);
+  background: #ffffff44; width: max-content;
+}
+
+.tsc-header .level-row label{
+    line-height: 24px; font-weight: 700; text-transform: uppercase; font-size: 12px;
+    padding: 0 8px; text-align: center; background: #2e3a4a; color: white;
+    border-radius: 6px 0 0 6px !important;
+}
+
+.tsc-header .level-input{
+    width: 32px; height: 24px; text-align: center;
+    box-shadow: none; border: none; background: #ffffff44;
+    outline: none; border: none; border-radius: 0;
+}
+
+/* ====== BIO & INFO — deux colonnes indépendantes ====== */
+.bio-grid{
+  display: flex;                /* flex -> colonnes indépendantes en hauteur */
+  gap: 10px;
+}
+
+/* Colonne gauche : pile Portrait (haut) + Infos (bas) */
+.bio-left{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 0 0 200px;
+}
+
+/* Colonne droite : éditeur riche (prend la place restante, hauteur autonome) */
+.bio-right{
+  flex: 1 1 auto;
+  align-self: flex-start;       /* n’étire pas la colonne gauche */
+}
+
+/* Portrait */
+.portrait-block { display: flex; justify-content: center; }
+.portrait-img{
+  width: 100%;
+  object-fit: cover; border-radius: 4px;
+  border: none; cursor: pointer;
+}
+.portrait-img:hover{
+  outline: 2px solid var(--color-border-highlight) !important;
+  outline-offset: 2px;
+}
+
+/* Champs d’infos */
+.bio-fields{
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 8px; row-gap: 6px;
+}
+.bio-fields label{
+  font-weight: 600; text-align: right; white-space: nowrap; opacity: .9;
+  line-height: 26px; padding-left: 2px;
+}
+
+/* L’éditeur a sa propre hauteur (n’impacte pas la colonne gauche) */
+.bio-right .editor,
+.bio-right .editor-content{
+  min-height: 260px;     /* ajuste si tu veux une zone plus haute par défaut */
+}
+
+/* ===== Configuration (onglet) ===== */
+.config-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
+
+.config-brand{
+  display:flex; align-items:center; gap:12px;
+}
+.system-logo{
+  width:172px; height:96px; object-fit:contain;
+  border-radius:8px; background: #fff;
+  border:1px solid var(--color-border-light-primary);
+}
+.brand-info .sys-title{ font-weight:800; font-size:18px; line-height:1.2; }
+.brand-info .sys-version{ opacity:.9; margin-top:2px; }
+
+.config-prefs .cfg-row{
+  display:grid;
+  grid-template-columns: max-content 1fr;
+  align-items:center;
+  column-gap:10px; row-gap:6px;
+  margin-bottom:8px;
+}
+.config-prefs .cfg-row label{
+  font-weight:600; white-space:nowrap; text-align:right; min-width:8rem;
+}
+
+/* ===== Thème sombre (par feuille) ===== */
+.tsc.sheet.actor.character.dark {
+  --tsc-panel-bg: rgba(20,24,32,0.9);
+  --tsc-panel-bd: rgba(255,255,255,0.12);
+  --tsc-chip: #1f2a38;
+  --tsc-text: #e6e8eb;
+  color: var(--tsc-text);
+}
+
+.tsc.sheet.actor.character.dark .panel{
+  background: var(--tsc-panel-bg);
+  border-color: var(--tsc-panel-bd);
+  box-shadow: none; color:#fff
+}
+
+.tsc.sheet.actor.character.dark .panel h3{
+  background:#1c2d4c; color:#fff;
+}
+
+.tsc.sheet.actor.character.dark input,
+.tsc.sheet.actor.character.dark select,
+.tsc.sheet.actor.character.dark textarea,
+.tsc.sheet.actor.character.dark .carac-line,
+.tsc.sheet.actor.character.dark .combat-line,
+.tsc.sheet.actor.character.dark .def-line,
+.tsc.sheet.actor.character.dark .resource-line,
+.tsc.sheet.actor.character.dark .inv-row,
+.tsc.sheet.actor.character.dark .other-row,
+.tsc.sheet.actor.character.dark .vital-box,
+.tsc.sheet.actor.character.dark .vital-line,
+.tsc.sheet.actor.character.dark .result,
+.tsc.sheet.actor.character.dark .inv-bar,
+.tsc.sheet.actor.character.dark .roll-line,
+.tsc.sheet.actor.character.dark .mods-row {
+  background: rgba(255,255,255,0.06);
+  color: var(--tsc-text);
+  border-color: var(--tsc-panel-bd);
+  --input-placeholder-color: #777 !important;
+}
+
+.tsc.sheet.actor.character.dark input::placeholder{ color: #777 !important; }
+
+.tsc.sheet.actor.character.dark .abbr{
+  background:#1c2d4c !important; color:#fff !important;
+}
+
+.tsc.sheet.actor.character.dark .roll {
+  background: rgb(180,180,255,0.08) !important;
+  border-color: var(--tsc-panel-bd);
+}
+.tsc.sheet.actor.character.dark .row-tools .mini,
+.tsc.sheet.actor.character.dark .entry-toggle,
+.tsc.sheet.actor.character.dark .entry-chat {
+  background: rgba(255,255,255,0.08);
+  border-color: var(--tsc-panel-bd);
+}
+
+.tsc.sheet.actor.character.dark .system-logo,
+.tsc.sheet.actor.character.dark .level-row {
+  border-color: var(--tsc-panel-bd) !important;
+}
+
+.app.window-app .window-content, .app.window-app .window-header {
+  background-image: none;
+  border: none;
+}
+body.game .app.window-app {
+  backdrop-filter: blur(12px) !important;
+  background: #161616bb !important;
+  border-radius: 12px !important;
+}
+.sidebar-tab { backdrop-filter: blur(12px) !important; }
+
+.tsc.sheet.actor.character.dark .grid-header,
+.tsc.sheet.actor.character.dark .add,
+.tsc.sheet.actor.character.dark .inv-head,
+.tsc.sheet.actor.character.dark .other-head {
+  color: #aaa
+}
+
+.tsc.sheet.actor.character.dark .badge-total,
+.tsc.sheet.actor.character.dark output.total {
+  color: #9dd1af;
+}
+
+.tsc.sheet.actor.character.dark .entry-active:checked + .entry-toggle{
+  color: #9dd1af;
+  background: var(--tsc-green-bg);
+  border-color: var(--tsc-green-border);
+}
+
+.panel-title-input, .name-big { background: none !important; }
+.tsc.sheet.actor.character.dark .level-row label { background: #1c2d4c; }
+
+/* ========== Armes v2 ========== */
+.grid-header.weapons{
+  grid-template-columns: 1.6fr 1.1fr 1.7fr 52px 1.5fr 44px 44px;
+  text-align: center;
+}
+.panel.weapons .w-row.v2{
+  display:grid; margin-bottom:4px;
+  grid-template-columns: 1.6fr max-content max-content 42px 1.6fr 36px 36px;
+  gap:8px; align-items:center; padding: 3px 6px;
+  border:1px solid var(--color-border-light-primary);
+  border-radius:6px; background:rgba(255,255,255,0.55);
+}
+.panel.weapons .w-row.v2 input,
+.panel.weapons .w-row.v2 select{
+  width:100%; height: 26px; text-align:center;
+}
+
+/* Sous-composants */
+.w-attack, .w-dmg{
+  display: flex; align-items: center; gap: 6px;
+  background: #fff; border-radius: 4px; padding: 3px;
+  border:1px solid var(--color-border-light-primary);
+}
+.w-attack input, .w-dmg input{ width: 28px !important; }
+.w-attack select{ width: 90px !important; }
+.w-dmg select{ width: 56px !important; }
+
+.tsc.sheet.actor.character.dark .w-row.v2,
+.tsc.sheet.actor.character.dark .w-attack,
+.tsc.sheet.actor.character.dark .w-dmg{
+  background: rgba(255,255,255,0.06) !important;
+  border-color: var(--tsc-panel-bd) !important;
 }

@@ -1,24 +1,30 @@
 <form class="tsc-sheet tsc-character" autocomplete="off">
 
   <!-- ===== ENTÊTE ===== -->
-  <header class="sheet-header flexrow tsc-header">
+  <header class="sheet-header tsc-header">
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
-    <div class="header-fields">
-      <div class="flexrow gap8">
-        <label>Nom</label>
-        <input name="name" type="text" value="{{actor.name}}"/>
-        <label>Niveau</label>
-        <input name="system.details.level" type="number" value="{{details.level}}" min="1"/>
-        <label>Classe</label>
-        <input name="system.details.class" type="text" value="{{details.class}}"/>
-      </div>
-      <div class="flexrow gap8">
-        <label>Profil</label>
-        <input name="system.details.profile" type="text" value="{{details.profile}}"/>
-        <label>Origine</label>
-        <input name="system.details.origin" type="text" value="{{details.origin}}"/>
+
+    <div class="header-identity">
+      <input class="name-big"
+            name="name"
+            type="text"
+            value="{{actor.name}}"
+            placeholder="{{localize 'TSC.Common.Name'}}"/>
+
+      <div class="level-row">
+        <label>{{localize "TSC.Header.Level"}}</label>
+        <input class="level-input"
+              name="system.details.level"
+              type="text"
+              value="{{details.level}}"/>
       </div>
     </div>
+
+    {{!-- >>> Logo système à droite de la bannière --}}
+    <img class="system-badge"
+        src="{{systemLogo2}}"
+        alt="{{systemTitle}}"
+        title="{{systemTitle}}"/>
   </header>
 
   <!-- ===== ONGLETS ===== -->
@@ -44,7 +50,7 @@
             <!-- PV -->
             <div class="pv-wrap">
               <div class="carac-line resource-line center">
-                <div class="abbr">PV</div>
+                <div class="abbr">{{localize "TSC.HP"}}</div>
                 <input type="number" name="system.vitality.hp.value" value="{{vitality.hp.value}}" min="0"/>
                 <span>/</span>
                 <input type="number" name="system.vitality.hp.max" value="{{vitality.hp.max}}" min="0"/>
@@ -68,20 +74,26 @@
               </div>
             </div>
 
-            <!-- États + Seuil -->
+            <!-- Blessures + Seuil -->
             <div class="vital-line mt8 two-stacks">
               <div class="stack">
-                <div class="stack-title">{{localize "TSC.Panel.Etats"}}</div>
-                <div class="inner-card">
+                <div class="stack-title">{{localize "TSC.Panel.Injuries"}}</div>
+                <div class="result">
                   <div class="state-options">
-                    <label><input type="radio" name="system.states.condition" value="normal" {{#if (eq states.condition "normal")}}checked{{/if}}> {{localize "TSC.States.Normal"}}</label>
-                    <label><input type="radio" name="system.states.condition" value="weak" {{#if (eq states.condition "weak")}}checked{{/if}}> {{localize "TSC.States.Weak"}}</label>
+                    {{!-- 5 cases à cocher : system.vitality.injuries[0..4] --}}
+                    {{#each injuries as |b idx|}}
+                      <input type="checkbox"
+                             name="system.vitality.injuries.{{idx}}"
+                             class="injury-checkbox"
+                             data-idx="{{idx}}"
+                             {{#if b}}checked{{/if}}>
+                    {{/each}}
                   </div>
                 </div>
               </div>
               <div class="stack">
                 <div class="stack-title">{{localize "TSC.Field.SeriousThreshold"}}</div>
-                <input type="number" name="system.vitality.thresholdSerious" value="{{vitality.thresholdSerious}}"/>
+                <output class="result">{{seriousThreshold}}</output>
               </div>
             </div>
           </section>
@@ -121,7 +133,7 @@
               <div class="resource-box">
                 <div class="resource-title">{{localize "TSC.Field.PMFull"}}</div>
                 <div class="carac-line resource-line">
-                  <div class="abbr">PM</div>
+                  <div class="abbr">{{localize "TSC.MP"}}</div>
                   <input type="number" name="system.resources.pm.value" value="{{resources.pm.value}}" min="0"/>
                   <span>/</span>
                   <input type="number" name="system.resources.pm.max" value="{{resources.pm.max}}" min="0"/>
@@ -130,7 +142,7 @@
               <div class="resource-box">
                 <div class="resource-title">{{localize "TSC.Field.PCFull"}}</div>
                 <div class="carac-line resource-line">
-                  <div class="abbr">PC</div>
+                  <div class="abbr">{{localize "TSC.LP"}}</div>
                   <input type="number" name="system.resources.pc.value" value="{{resources.pc.value}}" min="0"/>
                   <span>/</span>
                   <input type="number" name="system.resources.pc.max" value="{{resources.pc.max}}" min="0"/>
@@ -141,7 +153,7 @@
 
           <!-- COMBAT -->
           <section class="panel">
-            <h3>{{localize "TSC.Section.Combat"}}</h3>
+            <h3>{{localize "TSC.Panel.Combat"}}</h3>
             <div class="grid-header combat">
               <div></div>
               <div>{{localize "TSC.Field.Base"}}</div>
@@ -173,23 +185,46 @@
           <section class="panel">
             <h3>{{localize "TSC.Section.Defenses"}}</h3>
             <div class="grid-header defenses">
-              <div></div>
-              <div>{{localize "TSC.Field.Base"}}</div>
-              <div>{{localize "TSC.Def.Armor"}}</div>
-              <div>{{localize "TSC.Def.Shield"}}</div>
-              <div>DEX</div>
-              <div>{{localize "TSC.Def.Action"}}</div>
-              <div>{{localize "TSC.Field.Total"}}</div>
-            </div>
+            <div></div>
+            <div>{{localize "TSC.Field.Base"}}</div>
+            <div>{{localize "TSC.Def.Armor"}}</div>
+            <div>{{localize "TSC.Def.Shield"}}</div>
+            <div>{{localize "TSC.Field.Attribute"}}</div>
+            <div>{{localize "TSC.Field.Mod"}}</div>
+            <div>{{localize "TSC.Field.Total"}}</div>
+          </div>
+
+          <div class="def-stack">
+            <!-- DEF (physique) : on choisit l’attribut (par défaut DEX), le Mod. affiche le mod calculé -->
             <div class="def-line">
               <div class="abbr">{{localize "TSC.Def.DEF"}}</div>
-              <input type="number" name="system.defenses.def.base" value="{{defenses.def.base}}"/>
-              <input type="number" name="system.defenses.def.armor" value="{{defenses.def.armor}}"/>
+              <input type="number" name="system.defenses.def.base"   value="{{defenses.def.base}}"/>
+              <input type="number" name="system.defenses.def.armor"  value="{{defenses.def.armor}}"/>
               <input type="number" name="system.defenses.def.shield" value="{{defenses.def.shield}}"/>
-              <input type="number" name="system.defenses.def.dex" value="{{defenses.def.dex}}"/>
-              <input type="number" name="system.defenses.def.action" value="{{defenses.def.action}}"/>
+              <select name="system.defenses.def.attr">
+                {{#each attrOptions as |opt|}}
+                  <option value="{{opt.key}}" {{#if (eq opt.key ../defAttrKey)}}selected{{/if}}>{{opt.abbr}}</option>
+                {{/each}}
+              </select>
+              <output class="mod">{{defAttrModSigned}}</output>
               <output class="total">{{defTotal}}</output>
             </div>
+
+            <!-- DEM (magique) : par défaut INT -->
+            <div class="def-line">
+              <div class="abbr">{{localize "TSC.Def.DEM"}}</div>
+              <input type="number" name="system.defenses.dem.base"   value="{{defenses.dem.base}}"/>
+              <input type="number" name="system.defenses.dem.armor"  value="{{defenses.dem.armor}}"/>
+              <input type="number" name="system.defenses.dem.shield" value="{{defenses.dem.shield}}"/>
+              <select name="system.defenses.dem.attr">
+                {{#each attrOptions as |opt|}}
+                  <option value="{{opt.key}}" {{#if (eq opt.key ../demAttrKey)}}selected{{/if}}>{{opt.abbr}}</option>
+                {{/each}}
+              </select>
+              <output class="mod">{{demAttrModSigned}}</output>
+              <output class="total">{{demTotal}}</output>
+            </div>
+          </div>
           </section>
         </div>
       </div>
@@ -197,72 +232,463 @@
       <!-- ARMES / ATTAQUES -->
       <section class="panel weapons">
         <h3>{{localize "TSC.Weapons.Title"}}</h3>
-        <div class="w-row head">
-          <div>{{localize "TSC.Weapons.Name"}}</div>
-          <div>{{localize "TSC.Weapons.Type"}}</div>
-          <div>{{localize "TSC.Weapons.Attack"}}</div>
-          <div>{{localize "TSC.Weapons.Crit"}}</div>
-          <div>{{localize "TSC.Weapons.Damage"}}</div>
+
+        <div class="grid-header weapons">
+          <div>{{localize "TSC.Common.Name"}}</div>
+          <div>Attaque</div>
+          <div>Dégâts</div>
           <div>{{localize "TSC.Weapons.Range"}}</div>
-          <div>{{localize "TSC.Weapons.Special"}}</div>
+          <div>Note</div>
           <div>{{localize "TSC.Weapons.Roll"}}</div>
-          <div>{{localize "TSC.Field.DM"}}</div>
           <div>{{localize "TSC.Common.Delete"}}</div>
         </div>
-        {{#each weapons as |w i|}}
-        <div class="w-row">
-          <input type="text" name="system.weapons.{{i}}.name" value="{{w.name}}"/>
-          <input type="text" name="system.weapons.{{i}}.type" value="{{w.type}}"/>
-          <input type="number" name="system.weapons.{{i}}.attack" value="{{w.attack}}"/>
-          <input type="text" name="system.weapons.{{i}}.crit" value="{{w.crit}}"/>
-          <input type="text" name="system.weapons.{{i}}.dmg" value="{{w.dmg}}"/>
-          <input type="text" name="system.weapons.{{i}}.range" value="{{w.range}}"/>
-          <input type="text" name="system.weapons.{{i}}.special" value="{{w.special}}"/>
-          <button type="button" class="roll" data-action="roll-weapon" data-index="{{i}}">🎲</button>
-          <input type="number" name="system.weapons.{{i}}.dmgRoll" value="{{w.dmgRoll}}"/>
+
+        {{#each weaponsUI as |w i|}}
+        <div class="w-row v2">
+          <!-- Nom -->
+          <input type="text" name="system.weapons.{{i}}.name" value="{{w.name}}" />
+
+          <!-- Attaque : [Distance/Contact] + [bonus] -->
+          <div class="w-attack">
+            <select name="system.weapons.{{i}}.atk.type">
+              <option value="ranged" {{#if (eq w.atk.type "ranged")}}selected{{/if}}>{{localize "TSC.Combat.Ranged"}}</option>
+              <option value="melee"  {{#if (eq w.atk.type "melee")}}selected{{/if}}>{{localize "TSC.Combat.Melee"}}</option>
+            </select>
+            <span>+</span>
+            <input type="number" name="system.weapons.{{i}}.atk.bonus" value="{{w.atk.bonus}}" />
+          </div>
+
+          <!-- Dégâts : [nb] [d4..d12] + [carac ou pas] + [bonus] -->
+          <div class="w-dmg">
+            <input class="count" type="number" min="1" name="system.weapons.{{i}}.dmg.count" value="{{w.dmg.count}}" />
+            <select name="system.weapons.{{i}}.dmg.die">
+              {{#each ../weaponDieOptions as |die|}}
+                <option value="{{die}}" {{#if (eq die w.dmg.die)}}selected{{/if}}>{{die}}</option>
+              {{/each}}
+            </select>
+            <span>+</span>
+            <select name="system.weapons.{{i}}.dmg.attr">
+              {{#each ../weaponAttrOptions as |opt|}}
+                <option value="{{opt.key}}" {{#if (eq opt.key w.dmg.attr)}}selected{{/if}}>{{opt.label}}</option>
+              {{/each}}
+            </select>
+            <span>+</span>
+            <input class="bonus" type="number" name="system.weapons.{{i}}.dmg.bonus" value="{{w.dmg.bonus}}" />
+          </div>
+
+          <!-- Portée -->
+          <input type="text" name="system.weapons.{{i}}.range" value="{{w.range}}" />
+
+          <!-- Note -->
+          <input type="text" name="system.weapons.{{i}}.note" value="{{w.note}}" />
+
+          <!-- Jet -->
+          <button type="button" class="roll" data-action="weapon-roll" data-index="{{i}}">🎲</button>
+
+          <!-- Supprimer -->
           <button type="button" class="del" data-action="del-weapon" data-index="{{i}}">✖</button>
         </div>
         {{/each}}
+
+        <div class="weap-actions right">
+          <button type="button" class="add" data-action="weapon-add">{{localize "TSC.Common.Add"}}</button>
+        </div>
       </section>
     </div>
     
-    {{!-- ===== ONGLET CAPACITÉS ===== --}}
+    {{!-- ===== TAB: Capacities ===== --}}
     <div class="tab" data-tab="capacites">
       <div class="capacities-grid">
         {{#each paths as |v i|}}
-        <section class="panel path-panel">
-          <h3 class="path-header">
-            <input class="panel-title-input"
-                  type="text"
-                  name="system.paths.{{i}}.title"
-                  value="{{v.title}}"
-                  placeholder="{{localize 'TSC.Cap.PathTitle'}}"/>
-          </h3>
-          <div class="path-body">
-            <input class="path-title" type="text"
-                  name="system.paths.{{i}}.path"
-                  value="{{v.attr}}"
-                  placeholder="{{localize 'TSC.Cap.PathName'}}"/>
-            <div class="path-entries">
-              {{#each v.entries as |e j|}}
-              <details class="cap-entry" {{#if e.open}}open{{/if}}>
-                <summary>
-                  <span class="chev"></span>
-                  <input class="entry-title" type="text"
-                        name="system.paths.{{@../index}}.entries.{{j}}.title"
-                        value="{{e.title}}"
-                        placeholder="{{localize 'TSC.Cap.EntryTitle'}}"/>
-                </summary>
-                <textarea class="entry-text"
-                          name="system.paths.{{@../index}}.entries.{{j}}.text"
-                          rows="4"
-                          placeholder="{{localize 'TSC.Cap.EntryText'}}">{{e.text}}</textarea>
-              </details>
-              {{/each}}
+          <section class="panel path-panel">
+            <h3 class="path-header">
+              <input class="panel-title-input"
+                    name="system.paths[{{i}}].title"
+                    value="{{v.title}}"
+                    placeholder="{{localize 'TSC.Cap.PathTitle'}}"/>
+            </h3>
+
+            <div class="path-body">
+              <input class="path-title" type="text"
+                    name="system.paths[{{i}}].path"
+                    value="{{v.path}}"
+                    placeholder="{{localize 'TSC.Cap.PathName'}}"/>
+
+              <div class="path-entries">
+                {{#each v.entries as |e j|}}
+                  <details class="cap-entry"
+                          data-i="{{@../index}}"
+                          data-j="{{j}}"
+                          {{#if e.open}}open{{/if}}>
+                    <summary>
+                      <span class="chev"></span>
+
+                      {{!-- Checkbox “bouton” : input caché + label stylé identique au bouton chat --}}
+                      <input
+                        id="entry-active-{{@../index}}-{{j}}"
+                        class="entry-active"
+                        type="checkbox"
+                        name="system.paths[{{@../index}}].entries[{{j}}].active"
+                        {{#if e.active}}checked{{/if}}
+                        hidden
+                      />
+                      <label
+                        class="entry-toggle"
+                        for="entry-active-{{@../index}}-{{j}}"
+                        title="Activer / Désactiver"
+                        data-i="{{@../index}}"
+                        data-j="{{j}}"
+                      ></label>
+
+                      <input class="entry-title" type="text"
+                            name="system.paths[{{@../index}}].entries[{{j}}].title"
+                            value="{{e.title}}"
+                            placeholder="{{localize 'TSC.Cap.EntryTitle'}}"/>
+
+                      <button type="button"
+                              class="entry-chat"
+                              data-i="{{@../index}}"
+                              data-j="{{j}}"
+                              title="Envoyer au chat">💬</button>
+                    </summary>
+
+                    <textarea class="entry-text"
+                              name="system.paths[{{@../index}}].entries[{{j}}].text"
+                              rows="4"
+                              placeholder="{{localize 'TSC.Cap.EntryText'}}">{{e.text}}</textarea>
+                  </details>
+                {{/each}}
+              </div>
+            </div>
+          </section>
+        {{/each}}
+      </div>
+      <section class="panel cap-tools">
+        <h3>{{localize "TSC.Tools.Title"}}</h3>
+
+        {{!-- sous-onglets --}}
+        <nav class="subtabs" data-group="captools">
+          <a class="item active" data-tab="rolls">{{localize "TSC.Tools.Tabs.Rolls"}}</a>
+          <a class="item" data-tab="traits">{{localize "TSC.Tools.Tabs.Traits"}}</a>
+          <a class="item" data-tab="mods">{{localize "TSC.Tools.Tabs.Mods"}}</a>
+        </nav>
+
+        <section class="subbody" data-group="captools">
+          {{!-- ============ ROLLS ============ --}}
+          <div class="subtab active" data-tab="rolls">
+          {{#each capRolls as |r i|}}
+
+          <div class="roll-line">
+            <div class="roll-row">
+              <!-- Nom du jet : le plus à gauche, prend toute la place dispo -->
+              <div class="roll-formula">
+                <input class="roll-name"
+                      type="text"
+                      name="system.capRolls.{{i}}.title"
+                      value="{{r.title}}"
+                      placeholder="Nom du Jet de capacité"/>
+
+                <select name="system.capRolls.{{i}}.dice">
+                  <option value="1" {{#if (eq r.dice 1)}}selected{{/if}}>1</option>
+                  <option value="2" {{#if (eq r.dice 2)}}selected{{/if}}>2</option>
+                  <option value="3" {{#if (eq r.dice 3)}}selected{{/if}}>3</option>
+                </select>
+
+                <span>d20 (</span>
+                <select name="system.capRolls.{{i}}.mode">
+                  <option value="normal" {{#if (eq r.mode "normal")}}selected{{/if}}>{{localize "TSC.Rolls.Mode.Normal"}}</option>
+                  <option value="best" {{#if (eq r.mode "best")}}selected{{/if}}>{{localize "TSC.Rolls.Mode.Best"}}</option>
+                  <option value="worst" {{#if (eq r.mode "worst")}}selected{{/if}}>{{localize "TSC.Rolls.Mode.Worst"}}</option>
+                </select>
+
+                <span>) +</span>
+                <select name="system.capRolls.{{i}}.attr">
+                  {{#each ../attrOptions as |opt|}}
+                    <option value="{{opt.key}}" {{#if (eq opt.key r.attr)}}selected{{/if}}>{{opt.abbr}}</option>
+                  {{/each}}
+
+                  {{!-- === AJOUT LOCALISÉ === --}}
+                  <option value="">-</option>
+                  <option value="init">{{localize "TSC.Combat.Init"}}</option>
+                  <option value="ranged">{{localize "TSC.Combat.Ranged"}}</option>
+                  <option value="melee">{{localize "TSC.Combat.Melee"}}</option>
+                  <option value="magic">{{localize "TSC.Combat.Magic"}}</option>
+                </select>
+
+                <span>+ (</span>
+                <select name="system.capRolls.{{i}}.pathIndex">
+                  {{#each ../pathOptions as |po idx|}}
+                    <option value="{{idx}}" {{#if (eq idx r.pathIndex)}}selected{{/if}}>{{po}}</option>
+                  {{/each}}
+                </select>
+                <span>) +</span>
+
+                <input class="bonus" type="number" name="system.capRolls.{{i}}.bonus" value="{{r.bonus}}"/>
+                <button type="button" class="roll btn-ctrl" data-action="caproll-roll" data-index="{{i}}">🎲</button>
+                <button type="button" class="del btn-ctrl" data-action="caproll-del" data-index="{{i}}">✖</button>
+              </div>
+
+              <textarea name="system.capRolls.{{i}}.desc" rows="1" placeholder="Description">{{r.desc}}</textarea>
+            </div>
+          </div>
+          {{/each}}
+          <div class="flexrow mt8">
+            <button type="button" class="add" data-action="caproll-add">+ {{localize "TSC.Rolls.Add"}}</button>
+          </div>
+        </div>
+
+          {{!-- ============ TRAITS ============ --}}
+          <div class="subtab" data-tab="traits">
+            <div class="traits-grid">
+              <div class="stack">
+                <div class="stack-title">{{localize "TSC.Traits.Knowledge"}}</div>
+                <textarea name="system.traits.knowledge" rows="4">{{traits.knowledge}}</textarea>
+              </div>
+              <div class="stack">
+                <div class="stack-title">{{localize "TSC.Traits.Languages"}}</div>
+                <textarea name="system.traits.languages" rows="4">{{traits.languages}}</textarea>
+              </div>
+              <div class="stack">
+                <div class="stack-title">{{localize "TSC.Traits.Relations"}}</div>
+                <textarea name="system.traits.relations" rows="4">{{traits.relations}}</textarea>
+              </div>
+              <div class="stack">
+                <div class="stack-title">{{localize "TSC.Traits.Notes"}}</div>
+                <textarea name="system.traits.notes" rows="4">{{traits.notes}}</textarea>
+              </div>
+            </div>
+          </div>
+
+          {{!-- ============ MODS ============ --}}
+          <div class="subtab" data-tab="mods">
+
+            {{#each mods as |m i|}}
+            <div class="w-row mods-row">
+              <!-- Titre à gauche, prend tout l’espace -->
+              <input class="name"
+                    type="text"
+                    name="system.mods.{{i}}.note"
+                    value="{{m.note}}"
+                    placeholder="{{localize 'TSC.Common.Name'}}"/>
+
+              <select name="system.mods.{{i}}.target">
+                {{#each ../modTargetOptions as |mt|}}
+                <option value="{{mt.key}}" {{#if (eq mt.key m.target)}}selected{{/if}}>{{mt.label}}</option>
+                {{/each}}
+              </select>
+
+              <input class="value" type="number" name="system.mods.{{i}}.value" value="{{m.value}}" />
+
+              <button type="button" class="del btn-ctrl" data-action="mod-del" data-index="{{i}}">✖</button>
+            </div>
+            {{/each}}
+
+            <div class="flexrow mt8">
+              <button type="button" class="add" data-action="mod-add">+ {{localize "TSC.Mods.Add"}}</button>
             </div>
           </div>
         </section>
-        {{/each}}
+      </section>
+    </div>
+
+    {{!-- ===== TAB: Inventory ===== --}}
+    <div class="tab" data-tab="inventory">
+      <div class="inv-grid">
+
+        {{!-- Colonne gauche : ÉQUIPEMENT --}}
+        <section class="panel inv-equip">
+          <h3>{{localize "TSC.Inv.Title"}}</h3>
+
+          <div class="inv-bar">
+            <div class="inv-credits">
+              {{localize "TSC.Inv.Credits"}} :
+              <input type="number" name="system.inventory.credits" value="{{system.inventory.credits}}" min="0"/>
+            </div>
+          </div>
+
+          <div class="inv-head">
+            <div class="name">{{localize "TSC.Common.Name"}}</div>
+            <div class="qty">{{localize "TSC.Inv.Qty"}}</div>
+            <div class="tools"></div>
+          </div>
+
+          <div class="inv-list" data-scope="items">
+            {{#each invItems as |it i|}}
+            <div class="inv-row">
+              <input class="name" type="text" name="system.inventory.items.{{i}}.name" value="{{it.name}}"/>
+              <input class="qty"  type="number" name="system.inventory.items.{{i}}.qty" value="{{it.qty}}" min="0" />
+              <div class="row-tools">
+                <button type="button" class="mini" data-action="inv-del" data-index="{{i}}">✖</button>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+
+          <div class="inv-actions right">
+            <button type="button" class="add" data-action="inv-add">{{localize "TSC.Common.Add"}}</button>
+          </div>
+        </section>
+
+        {{!-- Colonne droite : AUTRES RESSOURCES --}}
+        <section class="panel inv-others">
+          <h3>{{localize "TSC.OtherRes.Title"}}</h3>
+
+          <div class="inv-bar">
+            <label>{{localize "TSC.OtherRes.Lifestyle"}} :
+              <select name="system.otherResources.lifestyle">
+                <option value="poor"     {{#if (eq system.otherResources.lifestyle "poor")}}selected{{/if}}>{{localize "TSC.Lifestyle.Poor"}}</option>
+                <option value="standard" {{#if (eq system.otherResources.lifestyle "standard")}}selected{{/if}}>{{localize "TSC.Lifestyle.Standard"}}</option>
+                <option value="comfort"  {{#if (eq system.otherResources.lifestyle "comfort")}}selected{{/if}}>{{localize "TSC.Lifestyle.Comfort"}}</option>
+                <option value="luxury"   {{#if (eq system.otherResources.lifestyle "luxury")}}selected{{/if}}>{{localize "TSC.Lifestyle.Luxury"}}</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="other-head">
+            <div class="name">{{localize "TSC.Common.Name"}}</div>
+            <div class="value">{{localize "TSC.OtherRes.Value"}}</div>
+            <div class="tools"></div>
+          </div>
+
+          <div class="other-list" data-scope="other">
+            {{#each otherList as |o i|}}
+            <div class="other-row">
+              <input class="name"  type="text"   name="system.otherResources.list.{{i}}.name"  value="{{o.name}}"/>
+              <input class="value" type="number" name="system.otherResources.list.{{i}}.value" value="{{o.value}}" min="0"/>
+              <div class="row-tools">
+                <button type="button" class="mini" data-action="other-del" data-index="{{i}}">✖</button>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+
+          <div class="inv-actions right">
+            <button type="button" class="add" data-action="other-add">{{localize "TSC.Common.Add"}}</button>
+          </div>
+        </section>
+
+        {{!-- Ligne du bas : DIVERS + NOTES --}}
+        <section class="panel inv-misc">
+          <h3>{{localize "TSC.Inv.Misc"}}</h3>
+          <textarea name="system.inventory.misc" rows="8">{{system.inventory.misc}}</textarea>
+        </section>
+
+        <section class="panel inv-notes">
+          <h3>{{localize "TSC.Inv.Notes"}}</h3>
+          <textarea name="system.inventory.notes" rows="8">{{system.inventory.notes}}</textarea>
+        </section>
+
+      </div>
+    </div>
+
+    {{!-- ===== TAB: Bio ===== --}}
+    <div class="tab" data-tab="bio">
+      <div class="bio-grid">
+        {{!-- Colonne gauche : Portrait (en haut) + Informations (en dessous) --}}
+        <div class="bio-left">
+          <section class="panel bio-portrait">
+            <h3>{{localize "TSC.Info.Photo"}}</h3>
+            <div class="portrait-block">
+              <img
+                class="portrait-img"
+                src="{{#if details.portrait}}{{details.portrait}}{{else}}{{actor.img}}{{/if}}"
+                data-edit="system.details.portrait"
+                title="{{localize 'TSC.Info.Photo'}}"
+              />
+            </div>
+          </section>
+
+          <section class="panel bio-info">
+            <h3>{{localize "TSC.Info.Panel"}}</h3>
+            <div class="bio-fields">
+              <label>{{localize "TSC.Info.Age"}}</label>
+              <input type="text"   name="system.details.age"     value="{{details.age}}"/>
+
+              <label>{{localize "TSC.Info.Gender"}}</label>
+              <input type="text"   name="system.details.gender"  value="{{details.gender}}"/>
+
+              <label>{{localize "TSC.Info.Origin"}}</label>
+              <input type="text"   name="system.details.origin"  value="{{details.origin}}"/>
+
+              <label>{{localize "TSC.Info.Profile"}}</label>
+              <input type="text"   name="system.details.profile" value="{{details.profile}}"/>
+
+              <label>{{localize "TSC.Info.Religion"}}</label>
+              <input type="text"   name="system.details.religion" value="{{details.religion}}"/>
+
+              <label>{{localize "TSC.Info.Eyes"}}</label>
+              <input type="text"   name="system.details.eyes"    value="{{details.eyes}}"/>
+
+              <label>{{localize "TSC.Info.Skin"}}</label>
+              <input type="text"   name="system.details.skin"    value="{{details.skin}}"/>
+
+              <label>{{localize "TSC.Info.Hair"}}</label>
+              <input type="text"   name="system.details.hair"    value="{{details.hair}}"/>
+
+              <label>{{localize "TSC.Info.Weight"}}</label>
+              <input type="text"   name="system.details.weight"  value="{{details.weight}}"/>
+
+              <label>{{localize "TSC.Info.Height"}}</label>
+              <input type="text"   name="system.details.height"  value="{{details.height}}"/>
+            </div>
+          </section>
+        </div>
+
+        {{!-- Colonne droite : éditeur riche (hauteur indépendante) --}}
+        <section class="panel bio-right">
+          <h3>{{localize "TSC.Tabs.Bio"}}</h3>
+          {{editor system.bio
+                  target="system.bio"
+                  button=true
+                  owner=owner
+                  editable=editable
+                  engine="prosemirror"}}
+        </section>
+      </div>
+    </div>
+
+    {{!-- ===== TAB: Configuration ===== --}}
+    <div class="tab" data-tab="version">
+      <div class="config-grid">
+
+        <section class="panel config-system">
+          <h3>{{localize "TSC.Config.System"}}</h3>
+          <div class="config-brand">
+            <img class="system-logo" src="{{systemLogo1}}" alt="{{systemTitle}}" />
+            <div class="brand-info">
+              <div class="sys-title">{{systemTitle}}</div>
+              <div class="sys-version">
+                {{localize "TSC.Config.Version"}} : <strong>{{systemVersion}}</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel config-prefs">
+          <h3>{{localize "TSC.Config.Prefs"}}</h3>
+
+          <div class="cfg-row">
+            <label>{{localize "TSC.Config.Theme.Label"}}</label>
+            <select name="system.config.theme">
+              <option value="light" {{#if (eq config.theme "light")}}selected{{/if}}>{{localize "TSC.Config.Theme.Light"}}</option>
+              <option value="dark"  {{#if (eq config.theme "dark")}}selected{{/if}}>{{localize "TSC.Config.Theme.Dark"}}</option>
+            </select>
+          </div>
+
+          <div class="cfg-row">
+            <label>{{localize "TSC.Config.Injury.Mode.Label"}}</label>
+            <select name="system.config.injury.mode">
+              <option value="flat" {{#if (eq config.injury.mode "flat")}}selected{{/if}}>{{localize "TSC.Config.Injury.Mode.Flat"}}</option>
+              <option value="dice" {{#if (eq config.injury.mode "dice")}}selected{{/if}}>{{localize "TSC.Config.Injury.Mode.Dice"}}</option>
+            </select>
+          </div>
+
+          <div class="cfg-row">
+            <label>{{localize "TSC.Config.Injury.Value"}}</label>
+            <input type="number" name="system.config.injury.value" value="{{config.injury.value}}" min="0" />
+          </div>
+        </section>
+
       </div>
     </div>
   </section>

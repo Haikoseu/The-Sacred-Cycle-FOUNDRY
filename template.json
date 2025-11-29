@@ -5,9 +5,17 @@
       "base": {
         "details": {
           "level": "",
-          "class": "",
           "profile": "",
-          "origin": ""
+          "origin": "",
+          "gender": "",
+          "age": "",
+          "height": "",
+          "weight": "",
+          "religion": "",
+          "eyes": "",
+          "skin": "",
+          "hair": "",
+          "portrait": ""
         },
         "attributes": {
           "str": { "value": 0},
@@ -24,32 +32,75 @@
           "magic":  { "base": 0,  "attr": "int"}
         },
         "defenses": {
-          "def":   { "base": 10, "armor": 0, "shield": 0, "dex": 0, "action": 0 },
-          "malus": { "cha": 0 },
-          "dep":   { "value": 10 },
-          "rd":    { "value": 0, "note": "" }
+          "def":   { "base": 10, "armor": 0, "shield": 0, "attr": "dex" },
+          "dem":   { "base": 10, "armor": 0, "shield": 0, "attr": "int" }
         },
         "vitality": {
           "dv": "d10",
           "hp": { "value": 10, "max": 10 },
           "temp": 0,
-          "thresholdSerious": 11
+          "thresholdSerious": 10,
+          "injuries": [ false, false, false, false, false ],
+          "injuriesCount": 0
         },
         "resources": {
           "pm": { "value": 10, "max": 10 },
           "pc": { "value": 3, "max": 3 }
         },
-        "states": { "condition": "normal" },
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "",
+            "attackType": "melee",
+            "attackBonus": 0,
+            "dmgCount": 1,
+            "dmgDie": "d6",
+            "useAttr": true,
+            "attr": "str",
+            "dmgBonus": 0,
+            "range": "",
+            "note": ""
+          }
+        ],
         "capacites": [],
         "paths": [
-          { "path": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] },
-          { "path": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] },
-          { "path": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] },
-          { "path": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] },
-          { "path": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] },
-          { "attr": "", "title": "", "entries": [ { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false }, { "title": "", "text": "", "open": false } ] }
-        ]
+          { "path": "", "title": "Voie culturelle", "entries": [ { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false } ] },
+          { "path": "", "title": "Voie professionnelle", "entries": [ { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false } ] },
+          { "path": "", "title": "Voie professionnelle", "entries": [ { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false } ] },
+          { "path": "", "title": "Voie d'espèce", "entries": [ { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false } ] },
+          { "path": "", "title": "Voie de hobby", "entries": [ { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false } ] },
+          { "path": "", "title": "Voie de prestige", "entries": [ { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false }, { "title": "", "text": "", "open": false, "active": false } ] }
+        ],
+        "capRolls": [
+          { "title": "", "pathIndex": 0, "dice": 1, "mode": "normal", "attr": "int", "rank": 0, "bonus": 0 }
+        ],
+        "traits": {
+          "knowledge": "",
+          "languages": "",
+          "relations": "",
+          "notes": ""
+        },
+        "mods": [
+          { "target": "int", "value": 0, "note": "" }
+        ],
+        "inventory": {
+          "credits": 0,
+          "items": [
+            { "name": "", "enc": 0, "qty": 1, "carried": true }
+          ],
+          "misc": "",
+          "notes": ""
+        },
+        "otherResources": {
+          "lifestyle": "standard",
+          "list": [
+            { "name": "", "value": 1 }
+          ]
+        },
+        "bio": "",
+        "config": {
+          "theme": "light",
+          "injury": { "mode": "flat", "value": 2 }
+        }
       }
     },
     "character": { "templates": ["base"] }
